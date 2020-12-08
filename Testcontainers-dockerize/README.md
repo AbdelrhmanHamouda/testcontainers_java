@@ -1,5 +1,10 @@
+# Testcontainers dockerize your test environment
+
+The goal for this repo is to explore how to enable testconatiners to be triggered with every test class. 
+I will also try to write a proper java HTTP agent to allow a simple use case instead of the overly complicated java http clients.
 
 # Expected behaviour
+
 For this project, the idea is to get a testcontainer running in the testing class and enable the tests to interact with it.
 
 
