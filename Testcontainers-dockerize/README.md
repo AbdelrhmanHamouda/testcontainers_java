@@ -42,3 +42,14 @@ dependencies {
 ```shell
 ./gradlew clean test
 ```
+
+
+## General notes  
+
+- For this project I am using ```TestRestTemplate``` from ```springframework``` to handle requests as it is a much better fit for my needs.  
+- The project is using ```jsonij``` for json parsing
+- For the POST requests, I found out that it is possible to supply a valid "string" that is a json viable.
+- A good endpoint to use as a practise for GET/PSOT/etc requests is: https://jsonplaceholder.typicode.com/  
+- A good source on using ```TestRestTemplate``` standalone without the whole framework is: TestRestTemplate
+- To get the ```TestRestTemplate``` dependency, go to https://jar-download.com/artifacts/org.springframework.boot/spring-boot-test/2.4.0 and chose the needed version.
+- A good github resource on ```TestRestTemplate``` https://github.com/eugenp/tutorials/tree/master/spring-resttemplate
