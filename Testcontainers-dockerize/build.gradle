@@ -20,6 +20,12 @@ dependencies {
     testImplementation "org.testcontainers:junit-jupiter:1.15.0"
     compile"org.slf4j:slf4j-simple:1.7.30"
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.22'
+    // springframework test for TestRestTemplate
+    compile group: 'org.springframework.boot', name: 'spring-boot-test', version: '2.4.0'
+    compile group: 'org.springframework', name: 'spring-web', version: '5.3.1'
+
+
+
 }
 
 test {
