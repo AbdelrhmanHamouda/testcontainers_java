@@ -57,9 +57,9 @@ public class TestingClass {
         ResponseEntity<String> response = testRestTemplate.
                 getForEntity(endpointURL + "/todos/1", String.class);
         // Print the response status code
-        System.out.println("The response status code is: "+response.getStatusCode());
+        System.out.println("The response status code is: " + response.getStatusCode());
         // Print the response body
-        System.out.println("The response body is: "+response.getBody());
+        System.out.println("The response body is: " + response.getBody());
         // Assert that the response was 200 OK
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
@@ -86,7 +86,7 @@ public class TestingClass {
             e.printStackTrace();
         }
         // Print the exact part of Json
-        System.out.println("The 'title' is: "+jsonBody.get("title"));
+        System.out.println("The 'title' is: " + jsonBody.get("title"));
         // Assert that the response was 200 OK
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
@@ -94,7 +94,21 @@ public class TestingClass {
     @Test
     @DisplayName("Send a POST request and check response")
     public void test6() {
-        fail("To be implemented");
+        // Create a TestRestTemplate object
+        TestRestTemplate testRestTemplate = new TestRestTemplate();
+        // Build a request body as a string!
+        String requestBody = "{\"title\": 'foo',\"body\": 'bar',\"userId\": 1}";
+        // Init the endpoint URL
+        String endpointURL = "https://jsonplaceholder.typicode.com";
+        // Send the request and capture the postResponse
+        ResponseEntity<String> postResponse = testRestTemplate.postForEntity(endpointURL + "/posts", requestBody, String.class);
+        // Print body
+        System.out.println("the POST response is " + postResponse.getBody());
+        // Send a GET request to query the new id
+        ResponseEntity<String> getResponse = testRestTemplate.getForEntity(endpointURL + "/posts/1", String.class);
+        // Print the response body
+        System.out.println("The GET response is " + getResponse.getBody());
+        assertEquals(HttpStatus.CREATED, postResponse.getStatusCode());
     }
 
     @Test
