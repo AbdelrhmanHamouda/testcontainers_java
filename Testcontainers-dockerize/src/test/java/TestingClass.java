@@ -10,6 +10,8 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @Testcontainers
@@ -120,6 +122,14 @@ public class TestingClass {
     @Test
     @DisplayName("Send a GET request to container and ignore SSL certificate")
     public void test8() {
-        fail("To be implemented");
+        // Trust SSL
+        HttpsURLConnection.setDefaultHostnameVerifier((hostname, session) -> true);
+        // Create a TestRestTemplate object
+        TestRestTemplate testRestTemplate = new TestRestTemplate();
+        // Init the endpoint URL
+        String endpointURL = "https://jsonplaceholder.typicode.com";
+        // Send a GET request to query the new id
+        ResponseEntity<String> getResponse = testRestTemplate.getForEntity(endpointURL + "/posts/1", String.class);
+        assertEquals(HttpStatus.OK, getResponse.getStatusCode());
     }
 }
