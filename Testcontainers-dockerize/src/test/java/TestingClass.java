@@ -132,4 +132,10 @@ public class TestingClass {
         ResponseEntity<String> getResponse = testRestTemplate.getForEntity(endpointURL + "/posts/1", String.class);
         assertEquals(HttpStatus.OK, getResponse.getStatusCode());
     }
+
+    @Test
+    @DisplayName("Setup a kafka container and use it")
+    public void test8() {
+        fail("To be implemented");
+    }
 }
