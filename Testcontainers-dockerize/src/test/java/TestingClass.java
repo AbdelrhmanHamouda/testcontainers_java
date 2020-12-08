@@ -1,3 +1,6 @@
+import jsonij.Value;
+import jsonij.parser.JSONParser;
+import jsonij.parser.ParserException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -64,18 +67,26 @@ public class TestingClass {
     @Test
     @DisplayName("Send a GET request, parse the json response and get the exact key")
     public void test5() {
-        fail("to be implemented");
         // * Send a GET request with TestRestTemplate
         // Create a TestRestTemplate object
         TestRestTemplate testRestTemplate = new TestRestTemplate();
         // Init the endpoint URL
         String endpointURL = "https://jsonplaceholder.typicode.com";
+        // Init json value holder
+        Value jsonBody = null;
+        // Init the Json parser
+        JSONParser parser = new JSONParser();
         // Send the request and capture the response
         ResponseEntity<String> response = testRestTemplate.
                 getForEntity(endpointURL + "/todos/1", String.class);
-
-        // Print the response body
-        System.out.println("The response body is: "+response.getBody());
+        // Parse the response AND handle the ParserException
+        try {
+            jsonBody = parser.parse(String.valueOf(response.getBody()));
+        } catch (ParserException e) {
+            e.printStackTrace();
+        }
+        // Print the exact part of Json
+        System.out.println("The 'title' is: "+jsonBody.get("title"));
         // Assert that the response was 200 OK
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
