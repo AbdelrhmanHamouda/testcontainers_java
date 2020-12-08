@@ -23,6 +23,8 @@ dependencies {
     // springframework test for TestRestTemplate
     compile group: 'org.springframework.boot', name: 'spring-boot-test', version: '2.4.0'
     compile group: 'org.springframework', name: 'spring-web', version: '5.3.1'
+    // For json parsing support
+    compile group: 'cc.plural', name: 'jsonij', version: '0.5.2'
 
 
 
