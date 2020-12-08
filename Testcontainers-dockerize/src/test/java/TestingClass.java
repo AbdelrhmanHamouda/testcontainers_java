@@ -135,7 +135,7 @@ public class TestingClass {
 
     @Test
     @DisplayName("Setup a kafka container and use it")
-    public void test8() {
+    public void test9() {
         fail("To be implemented");
     }
 }
